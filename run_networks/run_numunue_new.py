@@ -15,7 +15,7 @@ from pickle import dump
 from sklearn.metrics import accuracy_score, confusion_matrix
 
 IRON_HIDE = os.path.join('/', 'data', 'km3net', 'Xy_multi_data_files')
-UNISA = os.path.abspath("./Xy_multi_data_files_logE")
+UNISA = os.path.abspath("../../data/Xy_multi_data_files/")
 
 XY_AXIS = (1, 4)
 TZ_AXIS = (2, 3)
@@ -57,7 +57,7 @@ MODEL_JSON_FILEPATH = os.path.join(TASK_FOLDER_PATH, '{}_{}.json'.format(model.n
 print('TRAINING_WEIGHTS: ', TRAINING_WEIGHTS_FILEPATH)
 print('NET HISTORY: ', HISTORY_FILEPATH)
 
-multi_data_folder = IRON_HIDE #Changed to re-run classification 26/01/2018
+multi_data_folder = UNISA 
 train_test_dir = os.path.join(multi_data_folder, 'train_test_files', DATA_FOLDER_NAME)
 
 fnames_train, fnames_val, fnames_test, index_filelist = get_train_validation_test_files(train_test_dir,
@@ -91,7 +91,7 @@ with open(MODEL_JSON_FILEPATH, 'w') as model_json_f:
     model_json_f.write(model_json_str)
 
 history_filepath = HISTORY_FILEPATH
-dump(training_history.history, open(history_filepath, 'w'))
+dump(training_history.history, open(history_filepath, 'wb'))
 
 model.save_weights(TRAINING_WEIGHTS_FILEPATH)
 print('...Done!')

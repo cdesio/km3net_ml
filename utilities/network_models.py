@@ -15,7 +15,10 @@ from keras.models import Model
 from keras.losses import categorical_crossentropy, mse
 from keras.optimizers import Adadelta
 from keras.callbacks import EarlyStopping, ModelCheckpoint
-from keras.applications.resnet50 import conv_block, identity_block
+try: #old Keras
+    from keras.applications.resnet50 import conv_block, identity_block
+except ImportError: # new Keras
+    from keras_applications.resnet50 import conv_block, identity_block
 
 from keras import backend as K
 from os import path as p

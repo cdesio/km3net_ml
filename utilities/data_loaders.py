@@ -2,7 +2,10 @@ from math import ceil
 import numpy as np
 import pandas as pd
 from collections import OrderedDict
-from keras.engine.topology import _to_list
+try: #old keras
+    from keras.engine.topology import _to_list
+except ImportError: #new Keras
+    from keras.utils.generic_utils import to_list as _to_list
 from keras.utils import to_categorical
 from numpy import concatenate as concat
 from sklearn.utils.class_weight import compute_class_weight
